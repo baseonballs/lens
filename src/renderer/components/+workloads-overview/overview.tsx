@@ -35,7 +35,7 @@ import { replicaSetStore } from "../+workloads-replicasets/replicasets.store";
 import { jobStore } from "../+workloads-jobs/job.store";
 import { cronJobStore } from "../+workloads-cronjobs/cronjob.store";
 import { Events } from "../+events";
-import { isAllowedResource } from "../../../common/rbac";
+import { isAllowedResource } from "../../api/allowed-resources";
 import { kubeWatchApi } from "../../api/kube-watch-api";
 import { clusterContext } from "../context";
 import { workloadsOverviewDetailRegistry } from "../../../extensions/registries";
@@ -80,12 +80,11 @@ workloadsOverviewDetailRegistry.add([
   },
   {
     priority: 5,
+    
     components: {
-      Details: () => {
-        return (
-          isAllowedResource("events") && <Events compact hideFilters className="box grow"/>
-        );
-      }
+      Details: () => (
+        isAllowedResource("events") && <Events compact hideFilters className="box grow" />
+      )
     }
   }
 ]);
