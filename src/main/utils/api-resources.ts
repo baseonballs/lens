@@ -26,20 +26,24 @@ import { ExtendedMap } from "../../common/utils";
 
 export interface ApiResource {
   categories: Set<string>,
-  group: string,
+  group: Group,
   kind: string,
-  name: string,
+  name: ResourceName,
   namespaced: boolean,
   shortNames: Set<string>,
   singularName: string,
   verbs: Set<string>,
-  version: string,
+  version: Version,
 }
+
+type Group = string;
+type Version = string;
+type ResourceName = string;
 
 /**
  * Mapping between groupVersions and resource names and their information
  */
-export type ApiResourceMap = Map<string, Map<string, Map<string, ApiResource>>>;
+export type ApiResourceMap = Map<Group, Map<Version, Map<ResourceName, ApiResource>>>;
 
 /**
  * Get the list of all resources kubernetes knows about from the current cluster of `kc`.

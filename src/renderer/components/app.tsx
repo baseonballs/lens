@@ -83,13 +83,12 @@ export class App extends React.Component {
     const frameId = webFrame.routingId;
     const clusterId = getHostedClusterId();
 
-    await AllowedResources.createInstance(clusterId, () => clusterContext.contextNamespaces).init();
-
     logger.info(`[APP]: Init dashboard, clusterId=${clusterId}, frameId=${frameId}`);
     await Terminal.preloadFonts();
 
     await requestMain(clusterSetFrameIdHandler, clusterId);
     await getHostedCluster().whenReady; // cluster.activate() is done at this point
+    await AllowedResources.createInstance(clusterId, () => clusterContext.contextNamespaces).init();
     ExtensionLoader.getInstance().loadOnClusterRenderer();
     setTimeout(() => {
       appEventBus.emit({
