@@ -94,7 +94,7 @@ export class HelmCharts extends Component<Props> {
           customizeHeader={({ searchProps }) => ({
             searchProps: {
               ...searchProps,
-              placeholder: "Search Helm Charts",
+              placeholder: "Search Helm Charts...",
             },
           })}
           renderTableHeader={[

@@ -116,6 +116,12 @@ export class HelmReleases extends Component<Props> {
             (release: HelmRelease) => release.getStatus(),
             (release: HelmRelease) => release.getVersion(),
           ]}
+          customizeHeader={({ searchProps }) => ({
+            searchProps: {
+              ...searchProps,
+              placeholder: "Search Releases...",
+            },
+          })}
           renderHeaderTitle="Releases"
           renderTableHeader={[
             { title: "Name", className: "name", sortBy: columnId.name, id: columnId.name },
