@@ -112,7 +112,7 @@ export class Events extends React.Component<Props> {
     return this.items;
   }
 
-  customizeHeader: HeaderCustomizer = ({ info, title }) => {
+  customizeHeader: HeaderCustomizer = ({ info, title, ...headerPlaceholders }) => {
     const { compact } = this.props;
     const { store, items, visibleItems } = this;
     const allEventsAreShown = visibleItems.length === items.length;
@@ -138,7 +138,9 @@ export class Events extends React.Component<Props> {
           className="help-icon"
           tooltip={`Limited to ${store.limit}`}
         />
-      </>
+      </>,
+      title, 
+      ...headerPlaceholders
     };
   };
 
